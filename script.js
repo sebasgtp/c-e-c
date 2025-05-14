@@ -38,7 +38,7 @@ function calcularTotal() {
             return;
         }
 
-        const mitad = Math.floor(cantidad /2);
+    const mitad = Math.floor(cantidad /2);
         const otraMitad=cantidad-mitad;
 
         const precio1 = localidad === "VIP" ? 500000 : 350000;
@@ -52,12 +52,18 @@ function calcularTotal() {
         total *= 0.8;
         }
 
-  }     else {
+    }else {
         const precio = localidad === "VIP" ? 500000 : 350000;
         total = cantidad * precio;
-        }
+    }
 
-        totalSpan.textContent = `$${total.toLocaleString()}`;
-        resultado.classList.remove('d-none');
-        }
+    totalSpan.textContent = `$${total.toLocaleString()}`;
+    resultado.classList.remove('d-none');
+
 } 
+
+confirmarBtn.addEventListener('click', () => {
+    alert("Haz comprado tus boletas");
+    location.reload();
+  });
+  
