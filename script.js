@@ -17,4 +17,47 @@ cantidadInput.addEventListener('input', () => {
       segundaLocalidadSection.classList.add('d-none');
       resultado.classList.add('d-none');
     }
-  });
+});
+
+[localidadSelect, segundaLocalidadSelect].forEach(select => {
+    select.addEventListener('change', calcularTotal);
+}); 
+
+function calcularTotal() {
+    const cantidad = parseInt(cantidadInput.value);
+    const localidad = localidadSelect.value;
+    const segundaLocalidad = segundaLocalidadSelect.value;
+
+    if (!localidad) return;
+
+    let total = 0;
+    
+    if (segundaLocalidad && segundaLocalidad !== localidad) {
+        if(cantidad < 2) {
+            alert('Debes seleccionar al menos 2 entradas para poder usar 2 localidades');
+            return;
+        }
+
+        const mitad = Math.floor(cantidad /2);
+        const otraMitad=cantidad-mitad;
+
+        const precio1 = localidad === "VIP" ? 500000 : 350000;
+        const precio2 = segundaLocalidad === "VIP" ? 500000 : 350000;
+
+        total = (mitad * precio1) + (otraMitad * precio2);
+
+        if (cantidad === 2 &&
+            ((localidad === "VIP" && segundaLocalidad === "General") ||
+            (localidad === "General" && segundaLocalidad === "VIP"))) {
+        total *= 0.8;
+        }
+
+  }     else {
+        const precio = localidad === "VIP" ? 500000 : 350000;
+        total = cantidad * precio;
+        }
+
+        totalSpan.textContent = `$${total.toLocaleString()}`;
+        resultado.classList.remove('d-none');
+        }
+} 
