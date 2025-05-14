@@ -63,7 +63,7 @@ function calcularTotal() {
 } 
 
 confirmarBtn.addEventListener('click', () => {
-    alert("Haz comprado tus boletas");
+    alert("¡FELICIDADES! Haz comprado tus boletas con ÉXITO!");
     location.reload();
   });
   
